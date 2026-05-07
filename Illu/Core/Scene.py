@@ -1,22 +1,21 @@
 import pygame
 
+from Illu.Helpers.BucketStorage import BucketStorage
 from Illu.Settings.FrameData import FrameData
 
 
 class Scene:
     def __init__(self):
-        self.objects = []
+        self.primaryBucket = BucketStorage()
         self.background_color = (0, 0, 0)
         self.__changeScene = False
         self.__sceneToChangeTo = 0
 
     def update(self, frameData: FrameData):
-        for obj in self.objects:
-            obj.update(frameData)
+        self.primaryBucket.updateAll(frameData)
 
     def draw(self, surface: pygame.Surface):
-        for obj in self.objects:
-            obj.draw(surface)
+        self.primaryBucket.drawAll(surface)
 
     def onEnter(self,previousScene):
         pass

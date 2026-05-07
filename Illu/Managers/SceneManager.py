@@ -1,6 +1,6 @@
 import pygame
 
-from Illu.DeafultObjects.Scene import Scene
+from Illu.Core.Scene import Scene
 from Illu.Settings.FrameData import FrameData
 
 
