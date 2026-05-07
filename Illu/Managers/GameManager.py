@@ -13,3 +13,6 @@ class GameManager:
     def update(self,frameData: FrameData,surface: pygame.Surface):
         self.collector.scene_manager.update(frameData)
         self.collector.scene_manager.draw(surface)
+
+    def add_scene(self,scene: type[Scene]):
+        self.collector.scene_manager.add_scene(scene)
