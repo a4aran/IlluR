@@ -1,3 +1,6 @@
+import pygame.image
+
+
 class ImportManager:
     def __init__(self):
         self.__assets = {
@@ -35,10 +38,18 @@ class ImportManager:
         return self.__getAsset("sounds", category, name)
 
     def __loadImage(self, storageCategory: str, name: str):
-        pass
+        if not storageCategory in self.__assets["images"]: self.__assets["images"][storageCategory] = {}
+        self.__assets["images"][storageCategory][name] = pygame.image.load(f"./assets/images/{storageCategory}/{name}.png")
+
+    def __loadSound(self, storageCategory: str, name: str):
+        if not storageCategory in self.__assets["sounds"]: self.__assets["sounds"][storageCategory] = {}
+        self.__assets["sounds"][storageCategory][name] = pygame.mixer.Sound(f"./assets/sounds/{storageCategory}/{name}.ogg")
 
     def loadAnimatedImage(self, path, storageCategory: str, storageName: str, rows: int, columns: int):
         pass
 
-    def __loadSound(self, storageCategory: str, name: str):
-        pass
+    def preloadImage(self, storageCategory: str, name: str):
+        self.__loadImage(storageCategory, name)
+
+    def preloadSound(self, storageCategory: str, name: str):
+        self.__loadSound(storageCategory, name)
