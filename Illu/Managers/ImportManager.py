@@ -18,7 +18,12 @@ class ImportManager:
         try:
             return self.__assets[assetType][category][name]
         except KeyError:
-            return None
+            if assetType == "images":
+                self.__loadImage(category, name)
+            elif assetType == "animated":
+                return None
+            elif assetType == "sounds":
+                self.__loadSound(category, name)
 
     def getStillImage(self, category, name):
         return self.__getAsset("images", category, name)
@@ -29,11 +34,11 @@ class ImportManager:
     def getSound(self, category, name):
         return self.__getAsset("sounds", category, name)
 
-    def preloadImage(self,path,storageCategory: str,storageName: str):
+    def __loadImage(self, storageCategory: str, name: str):
         pass
 
-    def preloadAnimated(self,path,storageCategory: str,storageName: str,rows: int, columns: int):
+    def loadAnimatedImage(self, path, storageCategory: str, storageName: str, rows: int, columns: int):
         pass
 
-    def preloadSound(self,path,storageCategory: str,storageName: str):
+    def __loadSound(self, storageCategory: str, name: str):
         pass
